@@ -1,5 +1,6 @@
 #! /bin/bash
-
+/bin/bash
+/bin/nslcd && sleep 5
 /usr/bin/echo "Creating DB edt.org..."
 /usr/bin/echo "admin" | kinit admin/admin
 cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
