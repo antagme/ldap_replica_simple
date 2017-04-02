@@ -29,7 +29,7 @@ RUN setfacl -m u:ldap:r /etc/krb5.keytab
 RUN cp /usr/share/doc/krb5-server-ldap/kerberos.schema /etc/openldap/schema/
 #COPY configs /etc/
 #make executable and execute
-RUN /usr/bin/chmod +x /scripts/startup-slapd.sh & bash /scripts/startup-slapd.sh ; exit 0
+#RUN /usr/bin/chmod +x /scripts/startup-slapd.sh & bash /scripts/startup-slapd.sh ; exit 0
 #VOLUME ["/data"] 
-ENTRYPOINT /usr/sbin/nslcd & /usr/sbin/slapd & /bin/bash
+ENTRYPOINT /usr/sbin/nslcd & /bin/bash & bash /scripts/startup-slapd.sh && echo "Done"
 EXPOSE 25 143 587 993 4190 8001 8002 9001 389
