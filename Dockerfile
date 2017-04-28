@@ -2,7 +2,7 @@ FROM fedora
 MAINTAINER "Antonia Aguado Mercado" <nomail@gmail.com> 
 
 #installs
-RUN dnf install -y procps openldap openldap-servers openldap-clients krb5-workstation krb5-server-ldap nss-pam-ldapd ; exit 0
+RUN dnf install -y procps openldap openldap-servers openldap-clients krb5-workstation krb5-server-ldap supervisor nss-pam-ldapd ; exit 0
 # directoris
 RUN mkdir /opt/docker
 #Copy github to dockerhub build
