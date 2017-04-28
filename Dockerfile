@@ -8,6 +8,7 @@ RUN mkdir /opt/docker
 #Copy github to dockerhub build
 COPY scripts /scripts/
 COPY files /opt/docker
+RUN cp /opt/docker/supervisord.ini /etc/supervisord.d/
 RUN cp /opt/docker/ns* /etc/
 RUN cp -f /opt/docker/ldap.conf /etc/openldap/
 RUN cp -f /opt/docker/krb5.conf /etc/
@@ -17,9 +18,8 @@ RUN cp /opt/docker/ldapcert.pem /etc/openldap/certs/
 RUN cp /opt/docker/ldapserver.pem /etc/openldap/certs/
 RUN cp /opt/docker/cacert.pem /etc/ssl/certs/
 RUN chmod 400 /etc/openldap/certs/ldapserver.pem
-#COPY configs /etc/
 #make executable and execute
-#RUN /usr/bin/chmod +x /scripts/startup-slapd.sh & bash /scripts/startup-slapd.sh ; exit 0
+RUN /usr/bin/chmod +x /scripts/startup-slapd.sh & bash /scripts/startup-slapd.sh ; exit 0
 #VOLUME ["/data"] 
-ENTRYPOINT  ["/bin/bash", "/scripts/startup-slapd.sh"]
+ENTRYPOINT ["/usr/bin/supervisord", "-c","/etc/supervisord.d/supervisord.ini"]
 #EXPOSE 25 143 587 993 4190 8001 8002 9001 389
