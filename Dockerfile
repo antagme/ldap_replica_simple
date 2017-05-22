@@ -1,5 +1,5 @@
 FROM fedora
-MAINTAINER "Antonia Aguado Mercado" <nomail@gmail.com> 
+MAINTAINER "Pedro Romero Aguado" <pedroromeroaguado@gmail.com> 
 
 #installs
 RUN dnf install -y procps openldap openldap-servers openldap-clients krb5-workstation krb5-server-ldap supervisor nss-pam-ldapd ; exit 0
@@ -22,4 +22,3 @@ RUN chmod 400 /etc/openldap/certs/ldapserver.pem
 RUN /usr/bin/chmod +x /scripts/startup-slapd.sh & bash /scripts/startup-slapd.sh ; exit 0
 #VOLUME ["/data"] 
 ENTRYPOINT ["/usr/bin/supervisord", "-c","/etc/supervisord.d/supervisord.ini"]
-#EXPOSE 25 143 587 993 4190 8001 8002 9001 389
