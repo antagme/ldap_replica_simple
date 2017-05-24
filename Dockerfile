@@ -19,6 +19,6 @@ RUN cp /opt/docker/ldapserver.pem /etc/openldap/certs/
 RUN cp /opt/docker/cacert.pem /etc/ssl/certs/
 RUN chmod 400 /etc/openldap/certs/ldapserver.pem
 #make executable and execute
-RUN /usr/bin/chmod +x /scripts/startup-slapd.sh & bash /scripts/startup-slapd.sh ; exit 0
+RUN /usr/bin/chmod +x /scripts/startup-slapd.sh && bash /scripts/startup-slapd.sh ; exit 0
 #VOLUME ["/data"] 
 ENTRYPOINT ["/usr/bin/supervisord", "-c","/etc/supervisord.d/supervisord.ini"]
